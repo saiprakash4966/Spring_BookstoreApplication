@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class TokenUtil {
     private static final String TOKEN = "saiprakash";
 
-    public String createToken(Long id)
+    public String createToken(int id)
 
     {
         Algorithm algorithm = Algorithm.HMAC256(TOKEN);
