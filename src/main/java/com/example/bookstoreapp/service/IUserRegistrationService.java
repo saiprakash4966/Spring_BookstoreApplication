@@ -1,5 +1,6 @@
 package com.example.bookstoreapp.service;
 
+import com.example.bookstoreapp.dto.LoginDTO;
 import com.example.bookstoreapp.model.UserRegistrationData;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface IUserRegistrationService {
     UserRegistrationData updateUserRegistrationData(int userId, com.example.bookstoreapp.controller.dto.UserRegistrationDTO userRegistrationDTO);
 
     UserRegistrationData getUserByEmailId(String email);
+
+    UserRegistrationData userLogin(LoginDTO loginDTO);
 }

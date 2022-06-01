@@ -1,5 +1,6 @@
 package com.example.bookstoreapp.exceptions;
 
+import com.example.bookstoreapp.dto.ResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
@@ -11,22 +12,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
+
 public class UserRegistrationExceptionHandler {
     private static final String message = "Exception while processing REST request";
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<com.example.bookstoreapp.controller.dto.ResponseDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
+    public ResponseEntity<ResponseDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
         List<ObjectError> errorList = exception.getBindingResult().getAllErrors();
         List<String> errorMessage = errorList.stream()
                 .map(objectError -> objectError.getDefaultMessage())
                 .collect(Collectors.toList());
-        com.example.bookstoreapp.controller.dto.ResponseDTO responseDTO = new com.example.bookstoreapp.controller.dto.ResponseDTO(message, errorMessage);
-        return new ResponseEntity<com.example.bookstoreapp.controller.dto.ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
+        ResponseDTO responseDTO = new ResponseDTO(message, errorMessage);
+        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(UserRegistrationCustomException.class)
-    public ResponseEntity<com.example.bookstoreapp.controller.dto.ResponseDTO> handleUserRegistrationCustomException(UserRegistrationCustomException exception) {
-        com.example.bookstoreapp.controller.dto.ResponseDTO responseDTO = new com.example.bookstoreapp.controller.dto.ResponseDTO(message, exception.getMessage());
-        return new ResponseEntity<com.example.bookstoreapp.controller.dto.ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ResponseDTO> handleUserRegistrationCustomException(UserRegistrationCustomException exception) {
+        ResponseDTO responseDTO = new ResponseDTO(message, exception.getMessage());
+        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 }

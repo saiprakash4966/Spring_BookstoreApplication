@@ -3,6 +3,7 @@ package com.example.bookstoreapp.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import com.example.bookstoreapp.controller.dto.UserRegistrationDTO;
 
 @Entity
 @Table(name = "user_registration_table")
@@ -31,11 +32,11 @@ class UserRegistrationData {
     public UserRegistrationData() {
     }
 
-    public UserRegistrationData(com.example.bookstoreapp.controller.dto.UserRegistrationDTO userRegistrationDTO) {
+    public UserRegistrationData(UserRegistrationDTO userRegistrationDTO) {
         this.updateUserRegistrationData(userRegistrationDTO);
     }
 
-    public void updateUserRegistrationData(com.example.bookstoreapp.controller.dto.UserRegistrationDTO userRegistrationDTO) {
+    public void updateUserRegistrationData(UserRegistrationDTO userRegistrationDTO) {
         this.firstName = userRegistrationDTO.firstName;
         this.lastName = userRegistrationDTO.lastName;
         this.email = userRegistrationDTO.email;
