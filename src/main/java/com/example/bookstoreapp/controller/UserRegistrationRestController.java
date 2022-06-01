@@ -49,7 +49,7 @@ public class UserRegistrationRestController {
     @PostMapping("/create")
     public ResponseEntity<ResponseDTO> createUserRegistrationData(@Valid @RequestBody UserRegistrationDTO userRegistrationDTO) {
         UserRegistrationData userRegistrationData = iUserRegistrationService.createUserRegistrationData(userRegistrationDTO);
-        String token = tokenUtil.createToken(Long.valueOf(userRegistrationData.getUserId()));
+        String token = tokenUtil.createToken(userRegistrationData.getUserId());
         ResponseDTO responseDTO = new ResponseDTO("Created User Registration Data", userRegistrationData,token);
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
