@@ -32,6 +32,11 @@ public class BookService implements IBookService{
     }
 
     @Override
+    public List<BookData> getBookByAuthor(String bookAuthor) {
+        return bookRepository.findBookDataByBookAuthor(bookAuthor);
+    }
+
+    @Override
     public List<BookData> sortBookAscendingOrder() {
         return bookRepository.sortBookAscendingOrder();
     }
@@ -39,6 +44,28 @@ public class BookService implements IBookService{
     @Override
     public List<BookData> sortBookDescendingOrder() {
         return bookRepository.sortBookDescendingOrder();
+
     }
+    @Override
+    public BookData updateBookById(int bookId, BookDTO bookDTO) {
+        BookData bookData = this.getBookById(bookId);
+        bookData.updateBookData(bookDTO);
+        return bookRepository.save(bookData);
+    }
+
+    @Override
+    public BookData updateBookQuantity(int bookId, int bookQuantity) {
+        BookData bookData = this.getBookById(bookId);
+        bookData.setBookQuantity(bookQuantity);
+        return bookRepository.save(bookData);
+    }
+
+    @Override
+    public void deleteBookById(int bookId) {
+        BookData bookData = this.getBookById(bookId);
+        bookRepository.delete(bookData);
+    }
+
 }
+
 

@@ -14,6 +14,8 @@ public interface BookRepository extends JpaRepository<BookData, Integer> {
 
     @Query(value = "SELECT * FROM book_table order by book_name DESC", nativeQuery = true)
     List<BookData> sortBookDescendingOrder();
+
+    List<BookData> findBookDataByBookAuthor(String bookAuthor);
 }
 
 

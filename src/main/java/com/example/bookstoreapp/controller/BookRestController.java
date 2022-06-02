@@ -32,6 +32,13 @@ public class BookRestController
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/get_by_author/{bookAuthor}")
+    public ResponseEntity<ResponseDTO> getBookByAuthor(@PathVariable("bookAuthor") String bookAuthor) {
+        List<BookData> bookDataList = iBookService.getBookByAuthor(bookAuthor);
+        ResponseDTO responseDTO = new ResponseDTO("Getting books by author", bookDataList, null);
+        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+    }
+
     @GetMapping("/order_ascend")
     public ResponseEntity<ResponseDTO> sortBookAscendingOrder() {
         List<BookData> bookDataList = iBookService.sortBookAscendingOrder();
@@ -40,16 +47,44 @@ public class BookRestController
     }
 
     @GetMapping("/order_descend")
-    public ResponseEntity<ResponseDTO> sortBookDescendingOrder() {
+    public ResponseEntity<ResponseDTO> sortBookDescendingOrder()
+    {
         List<BookData> bookDataList = iBookService.sortBookDescendingOrder();
         ResponseDTO responseDTO = new ResponseDTO("Get Call Success", bookDataList, null);
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
 
     @PostMapping("/add_book")
-    public ResponseEntity<ResponseDTO> addBook(@RequestBody BookDTO bookDTO) {
+    public ResponseEntity<ResponseDTO> addBook(@RequestBody BookDTO bookDTO)
+    {
         BookData bookData = iBookService.addBook(bookDTO);
         ResponseDTO responseDTO = new ResponseDTO("Book added successfully", bookData, null);
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
+    @PutMapping("/update/{bookId}")
+    public ResponseEntity<ResponseDTO> updateBookById(@PathVariable("bookId") int bookId,
+                                                      @RequestBody BookDTO bookDTO) {
+        BookData bookData = iBookService.updateBookById(bookId, bookDTO);
+        ResponseDTO responseDTO = new ResponseDTO("Successfully updated book for Id " + bookId, bookData);
+        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+    }
+
+    @PutMapping("/update_quantity/{bookId}")
+    public ResponseEntity<ResponseDTO> updateBookQuantity(@PathVariable("bookId") int bookId,
+                                                          @RequestParam(value = "bookQuantity") int bookQuantity) {
+        BookData bookData = iBookService.updateBookQuantity(bookId, bookQuantity);
+        ResponseDTO responseDTO = new ResponseDTO("Successfully updated book quantity for id " + bookId, bookData);
+        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{bookId}")
+    public ResponseEntity<ResponseDTO> deleteBookById(@PathVariable("bookId") int bookId) {
+        iBookService.deleteBookById(bookId);
+        ResponseDTO responseDTO = new ResponseDTO("Delete call success for Id", "Deleted Id : " + bookId);
+        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+    }
+
+
+
+
 }
