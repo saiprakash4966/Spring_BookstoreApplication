@@ -9,6 +9,6 @@ class CartDTO
 {
     public int userId;
     public int bookId;
-    public int quantity;
+
 }
 

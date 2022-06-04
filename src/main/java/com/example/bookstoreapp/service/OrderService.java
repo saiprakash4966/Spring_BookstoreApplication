@@ -26,7 +26,9 @@ public class OrderService implements IOrderService{
     public OrderData placeOrder(OrderDTO orderDTO) {
         UserRegistrationData userRegistrationData = iUserRegistrationService.getUserRegistrationDataByUserId(orderDTO.getUserId());
         BookData bookData = iBookService.getBookById(orderDTO.getBookId());
+        int totalPrice = bookData.getBookPrice() * bookData.getBookQuantity();
         OrderData orderData = new OrderData(userRegistrationData, bookData, orderDTO);
+        orderData.setTotalPrice(totalPrice);
         return orderRepository.save(orderData);
     }
 

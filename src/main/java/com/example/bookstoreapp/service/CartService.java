@@ -29,7 +29,7 @@ public class CartService implements ICartService{
         UserRegistrationData userRegistrationData = iUserRegistrationService.getUserRegistrationDataByUserId(cartDTO.getUserId());
         if (userRegistrationData != null) {
             BookData bookData = iBookService.getBookById(cartDTO.getBookId());
-            CartData cartData = new CartData(userRegistrationData, bookData, cartDTO.quantity);
+            CartData cartData = new CartData(userRegistrationData, bookData);
             return cartRepository.save(cartData);
         }
         return null;
@@ -46,12 +46,12 @@ public class CartService implements ICartService{
                 .orElseThrow(() -> new UserRegistrationCustomException("Cart with id " + cartId + " not found"));
     }
 
-    @Override
-    public CartData updateCartQuantity(int cartId, int quantity) {
-        CartData cartData = this.getCartById(cartId);
-        cartData.setQuantity(quantity);
-        return cartRepository.save(cartData);
-    }
+//    @Override
+//    public CartData updateCartQuantity(int cartId, int quantity) {
+//        CartData cartData = this.getCartById(cartId);
+//        cartData.setQuantity(quantity);
+//        return cartRepository.save(cartData);
+//    }
 
     @Override
     public void deleteCart(int cartId) {

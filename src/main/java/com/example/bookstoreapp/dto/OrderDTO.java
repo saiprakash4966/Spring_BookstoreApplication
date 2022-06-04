@@ -11,8 +11,6 @@ class OrderDTO
     public int userId;
     public int bookId;
     public String address;
-    public LocalDate orderDate = LocalDate.now();
-    public int totalPrice;
-    public boolean cancel;
+
 }
 

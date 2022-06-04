@@ -36,13 +36,13 @@ public class CartRestController {
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update_quantity/{cartId}")
-    public ResponseEntity<ResponseDTO> updateBookQuantity(@PathVariable("cartId") int cartId,
-                                                          @RequestParam(value = "quantity") int quantity) {
-        CartData cartData = iCartService.updateCartQuantity(cartId, quantity);
-        ResponseDTO responseDTO = new ResponseDTO("Update quantity call success for Id", cartData);
-        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
-    }
+//    @PutMapping("/update_quantity/{cartId}")
+//    public ResponseEntity<ResponseDTO> updateBookQuantity(@PathVariable("cartId") int cartId,
+//                                                          @RequestParam(value = "quantity") int quantity) {
+//        CartData cartData = iCartService.updateCartQuantity(cartId, quantity);
+//        ResponseDTO responseDTO = new ResponseDTO("Update quantity call success for Id", cartData);
+//        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+//    }
 
     @DeleteMapping("/delete_cart/{cartId}")
     public ResponseEntity<ResponseDTO> deleteCart(@PathVariable("cartId") int cartId) {

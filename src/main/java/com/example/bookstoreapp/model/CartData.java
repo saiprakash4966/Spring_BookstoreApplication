@@ -24,13 +24,11 @@ class CartData {
     @JoinColumn(name = "book_id")
     private BookData bookId;
 
-    @Column(name = "quantity")
-    private int quantity;
 
-    public CartData(UserRegistrationData userId, BookData bookId, int quantity) {
+    public CartData(UserRegistrationData userId, BookData bookId) {
         this.userId = userId;
         this.bookId = bookId;
-        this.quantity = quantity;
+
     }
 
     public CartData() {

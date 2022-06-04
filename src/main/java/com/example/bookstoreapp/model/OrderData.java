@@ -48,9 +48,9 @@ class OrderData {
 
     public void orderData(OrderDTO orderDTO) {
         this.address = orderDTO.address;
-        this.orderDate = orderDTO.orderDate;
-        this.totalPrice = orderDTO.totalPrice;
-        this.cancel = orderDTO.cancel;
+        this.orderDate = getOrderDate();
+        this.totalPrice = getTotalPrice();
+
     }
 }
 
