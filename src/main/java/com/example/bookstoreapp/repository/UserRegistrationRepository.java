@@ -6,10 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRegistrationRepository extends JpaRepository<UserRegistrationData, Integer>
-{
-    @Query(value = "select * from user_registration_table where email = :email", nativeQuery = true)
-    UserRegistrationData getUserByEmailId(String email);
+public interface UserRegistrationRepository extends JpaRepository<UserRegistrationData, Integer> {
+    UserRegistrationData findUserRegistrationDataByEmail(String email);
 
     UserRegistrationData findByEmailAndPassword(String email, String password);
 }
+

@@ -1,14 +1,13 @@
 package com.example.bookstoreapp.model;
 
+import com.example.bookstoreapp.dto.UserRegistrationDTO;
 import lombok.Data;
 
 import javax.persistence.*;
-import com.example.bookstoreapp.controller.dto.UserRegistrationDTO;
 
 @Entity
 @Table(name = "user_registration_table")
-public @Data
-class UserRegistrationData {
+public @Data class UserRegistrationData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
@@ -28,6 +27,9 @@ class UserRegistrationData {
 
     @Column(name = "address")
     private String address;
+
+    @Column(name = "verified")
+    private boolean verified;
 
     public UserRegistrationData() {
     }

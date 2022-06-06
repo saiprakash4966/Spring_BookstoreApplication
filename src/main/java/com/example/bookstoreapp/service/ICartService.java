@@ -10,8 +10,8 @@ public interface ICartService {
 
     CartData getCartById(int cartId);
 
+    CartData updateQuantity(int cartId, int quantity);
 
     void deleteCart(int cartId);
 }
-
 

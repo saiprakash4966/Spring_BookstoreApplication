@@ -5,8 +5,7 @@ import com.example.bookstoreapp.model.OrderData;
 
 import java.util.List;
 
-public interface IOrderService
-{
+public interface IOrderService {
     OrderData placeOrder(OrderDTO orderDTO);
 
     List<OrderData> getAllOrders();
@@ -14,5 +13,9 @@ public interface IOrderService
     OrderData getOrderById(int orderId);
 
     OrderData cancelOrder(int orderId);
+
+    OrderData verifyOrder(String token);
 }
+
+
 

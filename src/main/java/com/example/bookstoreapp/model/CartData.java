@@ -7,8 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "cart_table")
-public @Data
-class CartData {
+public @Data class CartData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cart_id")
@@ -24,15 +23,19 @@ class CartData {
     @JoinColumn(name = "book_id")
     private BookData bookId;
 
+    @Column(name = "quantity")
+    private int quantity;
 
-    public CartData(UserRegistrationData userId, BookData bookId) {
+    @Column(name = "total_price")
+    private int totalPrice;
+
+    public CartData(UserRegistrationData userId, BookData bookId, int quantity, int totalPrice) {
         this.userId = userId;
         this.bookId = bookId;
-
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
     }
 
     public CartData() {
     }
 }
-
-

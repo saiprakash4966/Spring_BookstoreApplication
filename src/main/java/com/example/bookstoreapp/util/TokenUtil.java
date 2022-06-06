@@ -11,23 +11,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TokenUtil {
-    private static final String TOKEN = "saiprakash";
+    private static final String TOKEN = "sreenath";
 
-    public String createToken(int id)
-
-    {
+    public String createToken(int id) {
         Algorithm algorithm = Algorithm.HMAC256(TOKEN);
-        String token = JWT.create().withClaim("id", id).sign(algorithm);
-        return token;
+        return JWT.create().withClaim("id", id).sign(algorithm);
     }
 
-    public Long decodeToken(String token) throws SignatureVerificationException
-    {
+    public int decodeToken(String token) throws SignatureVerificationException {
         Verification verification = JWT.require(Algorithm.HMAC256(TOKEN));
         JWTVerifier jwtVerifier = verification.build();
         DecodedJWT decodedJWT = jwtVerifier.verify(token);
         Claim claim = decodedJWT.getClaim("id");
-        Long id = claim.asLong();
-        return id;
+        return claim.asInt();
     }
 }
+
